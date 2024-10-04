@@ -1,9 +1,12 @@
 import {getAllCountries} from '../services/countriesServices'
 
 describe('Countries API should return data', () => {
+    let data;
+    beforeAll(async () => {
+        data = await getAllCountries();
+    });
     // check that the data is an array (since the API returns an array of countries)
     it('API should return an array of countries', async () => {
-        const data = await getAllCountries();
         expect(Array.isArray(data)).toBe(true);
     })
 

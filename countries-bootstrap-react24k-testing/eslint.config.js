@@ -3,6 +3,7 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
+import eslintPluginJest from 'eslint-plugin-jest'
 
 export default [
   { ignores: ['dist'] },
@@ -35,5 +36,13 @@ export default [
       ],
       'react/prop-types': 'off',
     },
+  },
+  {    files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],    
+    plugins: {      
+      jest: eslintPluginJest,    
+    },    
+    rules: {      
+      ...eslintPluginJest.configs.recommended.rules,    
+    },  
   },
 ]

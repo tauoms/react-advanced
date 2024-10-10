@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import countriesReducer from "../store/countriesSlice";
+import { initializeCountries } from "../services/countriesServices";
 
 jest.mock("../services/countriesServices");
 
@@ -41,5 +42,11 @@ describe('countriesSlice tests', () => {
         });
         console.log('Countries after payload: ', store.getState().countries.countries);
         expect(store.getState().countries.countries).toEqual(countriesPayload);
+    });
+
+    it('Should handle initializeCountries action', async () => {
+        await store.dispatch(initializeCountries());
+        console.log('Countries after initializtion: ', store.getState().countries.countries);
     })
+
 });
